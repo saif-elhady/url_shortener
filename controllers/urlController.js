@@ -28,14 +28,14 @@ const urlRedirect = (req, res) => {
     URL.findOne({ alias })
         .then((url) => {
             if (url) {
-                res.redirect(url.long);
+                res.redirect(`${url.long}`);
             }
             else {
-                res.render('error', { message: "Failed to load home page", error: err });
+                res.render('error', { message: "Invalid alias", error: err });
             }
         })
         .catch((err) => {
-            res.render('error', { message: "Failed to load home page", error: err });
+            res.render('error', { message: "Failed to redirect", error: err });
         })
 }
 
