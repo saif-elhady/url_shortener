@@ -23,6 +23,21 @@ const urlPost = (req, res) => {
             res.render('error', { message: "Failed to load home page", error: err });
         })
 }
+const urlRedirect = (req, res) => {
+    const alias = req.params.alias;
+    URL.findOne({ alias })
+        .then((url) => {
+            if (url) {
+                res.redirect(url.long);
+            }
+            else {
+                res.render('error', { message: "Failed to load home page", error: err });
+            }
+        })
+        .catch((err) => {
+            res.render('error', { message: "Failed to load home page", error: err });
+        })
+}
 
 const urlDelete = (req, res) => {
     const id = req.params.id;
@@ -37,5 +52,6 @@ const urlDelete = (req, res) => {
 module.exports = {
     getHome,
     urlPost,
-    urlDelete
+    urlDelete,
+    urlRedirect,
 }

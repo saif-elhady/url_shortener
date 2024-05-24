@@ -5,6 +5,7 @@ const urlController = require ('../controllers/urlController')
 router.get('/', urlController.getHome);
 router.post('/', urlController.urlPost);
 router.delete('/:id', urlController.urlDelete);
+router.get('/:alias', urlController.urlRedirect);
 
 module.exports = router;
 
